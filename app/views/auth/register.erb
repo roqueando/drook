@@ -1,0 +1,39 @@
+<div class="login" style="width: 100%; height: 100vh; background-color: #333">
+    <div class="box login-box" style="background-color: #555">
+        <h2 class="title is-4" style="color: #eee; text-align: center">criar conta</h2>
+        <%= form_with(url: '/register', method: 'POST') do %>
+            <% if flash[:alert] %>
+                <% flash.each do |type, message| %>
+                    <div class="notification is-danger">
+                        <%= message %> 
+                    </div>
+                <% end %>
+            <% end %>
+            <input 
+                type="text" 
+                name="user[name]" 
+                placeholder="digite seu nome"
+                class="input"
+            />
+            <br></br>
+            <input 
+                type="text" 
+                name="user[email]" 
+                placeholder="digite seu email"
+                class="input"
+            />
+            <br></br>
+            <input 
+                type="password" 
+                name="user[password]" 
+                placeholder="digite sua senha"
+                class="input"
+            />
+            <br></br>
+            <button class="button is-fullwidth is-link" type="submit">criar conta</button>
+            <br></br>
+            <a href="/" class="button is-fullwidth is-small is-dark">ja possui uma conta? entre por aqui!</a>
+        <% end %>
+    </div>
+    
+</div>
