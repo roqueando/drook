@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   post '/authenticate', to: 'auth#authenticate'
 
   get '/app', to: 'audios#index'
+  get '/audio/stream/:id', to: 'audios#stream', as: :stream
   resource :audios
 end

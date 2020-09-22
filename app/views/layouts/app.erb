@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Drook | App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', async: true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  </head>
+
+  <body>
+      <nav 
+          class="navbar is-dark" 
+          role="navigation" 
+          aria-label="main navigation"
+          >
+          <div class="navbar-brand">
+              <a class="navbar-item" href="/app">
+                  <i class="fas fa-headphones-alt fa-2x" style="color: #eee"></i>
+              </a>
+
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+              </a>
+          </div>
+
+          <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start">
+                  <div class="field has-addons" style="padding: 10px; width: 100%">
+                      <div class="control">
+                          <input 
+                              class="input is-small" 
+                              type="text" 
+                              placeholder="procure por algum audio!"
+                              />
+                      </div>
+                      <div class="control">
+                          <a class="button is-primary is-small">
+                              <i class="fas fa-search"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="navbar-end">
+                  <div class="navbar-item has-dropdown is-hoverable is-dark">
+                      <a class="navbar-item" style="color: #eee">
+                          Bem-vindo, <%= session[:user_name] %>
+                      </a>
+
+                      <div class="navbar-dropdown is-boxed is-dark">
+                          <button 
+                              onclick="Turbolinks.visit('/audios')"
+                              class="navbar-item button is-light"> 
+                              Meus Audios
+                          </button>
+                          <a class="navbar-item">
+                              Meu Perfil
+                          </a>
+                          <a class="navbar-item">
+                              Favoritos
+                          </a>
+                          <hr class="navbar-divider">
+                          <a class="navbar-item">
+                              Sair
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </nav>
+
+    <%= yield %>
+
+    <%= render 'layouts/partials/audio_player'%>
+  <script charset="utf-8">
+      var selector = [
+        '[data-turbolinks-permanent] audio',
+        'audio[data-turbolinks-permanent]',
+        '[data-turbolinks-permanent] video',
+        'video[data-turbolinks-permanent]'
+      ];
+      
+        document.addEventListener('turbolinks:load', function(event) {
+            var mediaElements = document.querySelectorAll(selector.join(','));
+            mediaElements.forEach(uninterrupt);
+        });
+      // variables
+      var audioPlayer = document.querySelector('.audio-player');
+      var playerTitle = document.querySelector('.player-info');
+      var playerButton = document.querySelector('#play-button');
+      var progress = document.querySelector('.progress-bar');
+      var inputRange = document.querySelector('#volume-slider');
+      var item = document.querySelector('.navbar-item');
+      
+
+      // event handlers
+      audioPlayer.ontimeupdate = function() {
+       progress.style.width = audioPlayer.currentTime / audioPlayer.duration * 100 + "%";
+      }
+
+      audioPlayer.onended = function () {
+            playerButton.classList.remove('is-light')
+            playerButton.classList.add('is-dark')
+            playerButton.innerHTML = '<i class="fas fa-play"></i>'
+      }
+
+      item.onclick = function() {
+        Turbolinks.visit('/audios')
+      }
+
+      inputRange.onchange = function(event) {
+        audioPlayer.volume = event.target.value / 100;
+      }
+
+    // Functions
+      function play(audioId, title) {
+        fetch(`/audio/stream/${audioId}`)
+            .then(response => {
+                playerTitle.innerHTML = title;
+                return response.blob();
+            })
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                audioPlayer.src = url
+                audioPlayer.play();
+                playerButton.classList.remove('is-dark')
+                playerButton.classList.add('is-light')
+                playerButton.innerHTML = '<i class="fas fa-pause"></i>'
+            });
+        }
+      function uninterrupt(media) {
+        if(!media.uninterrupted) {
+            media.addEventListener('play', () => media.isPlaying = true);
+            media.addEventListener('pause', () => media.isPlaying = true);
+            media.uninterrupted = true;
+        }
+      }
+
+
+  </script>
+  </body>
+  
+</html>

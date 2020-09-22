@@ -1,5 +1,14 @@
-<h1>Welcome <%= @user.name %></h1>
+<div
+    style="background-color: #333; padding: 10px">
+    <% if @audios.empty? %>
+        Nao ha audios por enquanto
+    <% else %>
+        
+        <div class="columns is-multiline">
+            <% @audios.each do |audio|%>
+                <%= render "layouts/components/audio", audio: audio %>
+            <% end %>
+        </div>
+        <% end %>
+</div>
 
-<% if @audios.empty? %>
-<p>Nao ha audios</p>
-<% end %>

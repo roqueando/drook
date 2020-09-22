@@ -1,4 +1,5 @@
 /*
+ *
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -28,4 +29,73 @@
     color: white;
     text-align: center;
     margin: 1%
+}
+.audio-progress {
+    border: 2px solid transparent;
+    width: 0%;
+    padding: 1px;
+    position: relative;
+    top: 0;
+    background-color: #eee;
+}
+
+.actions {
+    text-align: center
+}
+
+.player {
+    position: fixed;
+    bottom: 0;
+    background-color: #180c30;
+    width: 100%;
+    padding: 5px;
+}
+
+.player .player-actions {
+    display: inline;
+}
+
+.player .player-info {
+    align-items: middle;
+    text-align: center ;
+    color: #eee;
+    font-size: 18px;
+}
+
+.player .progress-bar {
+    width: 0%;
+    border: 1px solid #eee;
+    background-color: #eee;
+    margin-bottom: 1%;
+    padding: 2px;
+}
+
+#volume-slider {
+    width: 10%;
+    -webkit-appearence: none;
+    appearence: none;
+    background-color: #eee;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+#volume-slider:hover {
+    opacity: 1;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearence: none;
+    appearence: none;
+    width: 25px;
+    height: 25px;
+    background: #180c30;
+    cursor: pointer;
+}
+
+#volume-slider::-webkit-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #4CAF50; /* Green background */
+  cursor: pointer; /* Cursor on hover */
 }

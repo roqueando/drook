@@ -1,0 +1,33 @@
+<div class="player" id="player" data-turbolinks-permanent>
+    <div class="progress-bar"></div>
+    <audio src="" class="audio-player"></audio>
+    <div class="player-actions">
+        <button class="button is-dark is-small" id="play-button">
+            <i class="fas fa-play"></i>
+        </button> 
+    </div> 
+    <span class="player-info">
+        no audio playing
+    </span>
+    <span style="text-align: center">
+        <input type="range" min="1" max="100" id="volume-slider"/>
+    </span>
+</div>
+
+<script charset="utf-8">
+    var button = document.querySelector('#play-button');
+    var audio = document.querySelector('.audio-player');
+    button.onclick = function() {
+        if(audio.paused) {
+            audio.play();
+            button.classList.remove('is-dark')
+            button.classList.add('is-light')
+            button.innerHTML = '<i class="fas fa-pause"></i>'
+        } else {
+            audio.pause();
+            button.classList.remove('is-light')
+            button.classList.add('is-dark')
+            button.innerHTML = '<i class="fas fa-play"></i>'
+        }
+    }
+</script>

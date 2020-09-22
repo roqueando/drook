@@ -1,6 +1,8 @@
 module AuthHelper
   def sign_in(user)
     session[:user_id] = user.id
+    session[:user_email] = user.email
+    session[:user_name] = user.name
   end
 
   def current_user

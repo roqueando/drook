@@ -1,0 +1,27 @@
+<div class="column is-one-third">
+    <div class="card" style="border-radius: 5px">
+        <div class="card-content">
+            <div class="content">
+                <h1 class="title is-5"><%= audio.title %></h1>
+                <span class="tag is-primary"><%= audio.audio_type %></span>
+                <br></br>
+                <p><%= audio.description %></p>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <button 
+                class="button is-danger is-light card-footer-item">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button 
+                class="button is-primary is-light card-footer-item" 
+                onclick="play(<%= audio.id %>, '<%= audio.title%> @ <%= audio.user.name %>')">
+                <i class="fas fa-play"></i>
+            </button>
+            <button 
+                class="button is-link is-light card-footer-item">
+                <i class="fas fa-share"></i>
+            </button>
+        </footer>
+    </div>
+</div>
