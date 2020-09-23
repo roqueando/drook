@@ -5,7 +5,7 @@
                 <h1 class="title is-5"><%= audio.title %></h1>
                 <span class="tag is-primary"><%= audio.audio_type %></span>
                 <br></br>
-                <p><%= audio.description %></p>
+                <p><%= truncate audio.description, :length => 50 %></p>
             </div>
         </div>
         <footer class="card-footer">

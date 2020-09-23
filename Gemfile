@@ -9,6 +9,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 gem 'pg'
 gem 'sqlite3', '~> 1.4'
 gem "actionpack-page_caching"
+gem 'kaminari'
 #
 # Use Puma as the app server
 gem 'puma', '~> 4.1'

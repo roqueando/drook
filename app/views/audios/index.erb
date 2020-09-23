@@ -1,5 +1,6 @@
 <div
-    style="background-color: #333; padding: 10px">
+    style="background-color: #333; height: 100vh; padding: 10px">
+    <%= paginate @audios %>
     <% if @audios.empty? %>
         Nao ha audios por enquanto
     <% else %>
@@ -9,6 +10,7 @@
                 <%= render "layouts/components/audio", audio: audio %>
             <% end %>
         </div>
-        <% end %>
+    <% end %>
+
 </div>
 

@@ -99,3 +99,10 @@
   background: #4CAF50; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
+.pagination-link {
+    color: #eee
+}
+
+html, body {
+    height: 100%
+}

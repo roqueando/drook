@@ -5,7 +5,11 @@ class AudiosController < ApplicationController
   layout "app"
 
   def index
-    @audios = Audio.all
+    @audios = Audio.all.order(:created_at)
+    @audios = Kaminari
+      .paginate_array(@audios)
+      .page(params[:page])
+      .per(6)
   end
 
   def show
