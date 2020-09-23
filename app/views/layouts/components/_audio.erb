@@ -2,7 +2,10 @@
     <div class="card" style="border-radius: 5px">
         <div class="card-content">
             <div class="content">
-                <h1 class="title is-5"><%= audio.title %></h1>
+                <h1 class="title is-5">
+                    <%= audio.title %>
+                    <a href="/user/profile/<%= audio.user.id %>" class="tag is-rounded is-warning"><%= audio.user.name %></a>
+                </h1>
                 <span class="tag is-primary"><%= audio.audio_type %></span>
                 <br></br>
                 <p><%= truncate audio.description, :length => 50 %></p>

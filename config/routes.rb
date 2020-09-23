@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   get '/app', to: 'audios#index'
   get '/audio/stream/:id', to: 'audios#stream', as: :stream
+  get '/user/profile/:id', to: 'auth#profile' 
+  put '/user/profile/:id', to: 'auth#update_profile'
   resource :audios
 end
