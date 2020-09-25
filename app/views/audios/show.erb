@@ -1,50 +1,32 @@
-<div class="columns" style="padding: 10px">
-   <div class="column is-4">
-      <div 
-          class="box is-dark" 
-          style="background-color: #333">
-
-          <%= form_for @audio do |form| %>
-            <label style="color: #eee">qual o titulo do seu audio?</label>
-            <%= form.text_field :title, class: 'input', placeholder: 'ex.: Um conto de lovecraft'%> 
-            <br></br>
-
-            <div class="select">
-                <%= form.select :audio_type, @types%>
-            </div>
-            <br></br>
-
-            <label style="color: #eee">uma breve descricao</label>
-            <%= form.text_area :description, class: 'textarea', placeholder: 'Ctchulhu ftghn'%>
-            <br/>
-            <div class="file is-primary is-centered">
-                <label class="file-label">
-                    <%= form.file_field :path, class: 'file-input'%>
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            selecione o arquivo de audio
-                        </span>
-                    </span>
-                </label>
-            </div>
-            <br></br>
-            <%= form.submit 'importar', class: 'button is-fullwidth is-link' %>
-          <% end %>
-      </div> 
-   </div> 
+<%= render "audios/components/form" %>
+<div class="columns" style="padding: 30px; background-color: #555; height: 110vh">
    <div class="column">
       <div 
           class="box is-dark" 
           style="background-color: #333">
           <div class="columns is-multiline">
+              <button 
+                  class="button is-small is-fullwidth is-info modal-button"
+                  data-target="modal-ter"
+                >
+                  <i class="fas fa-plus"></i> <span>adicionar audio</span>
+              </button>
               
               <% @audios.each do |audio| %>
                 <%= render "layouts/components/audio", audio: audio %>
               <% end %>
+              <%= paginate @audios %>
           </div>
       </div> 
    </div> 
 </div>
+<script charset="utf-8">
+    const openModalButton = document.querySelector('.modal-button') 
+    const modal = document.querySelector(".modal");
+
+    openModalButton.onclick = function (event) {
+        if(modal.style.display == 'none' || modal.style.display == '') {
+            modal.style.display = 'block';
+        }
+    }
+</script>

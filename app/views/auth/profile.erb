@@ -30,7 +30,7 @@
             <% end %>
             <% else %>
             <h1 class="title is-3"><%= @user.name%></h1>
-            <p>Seus audios</p>
+            <p>Audios de <%= @user.name%></p>
             <div class="field is-grouped is-grouped-multiline">
                 <% @user.audios.each do |audio| %>
                 <div class="control">

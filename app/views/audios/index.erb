@@ -1,15 +1,23 @@
 <div
     style="background-color: #333; height: 100vh; padding: 10px">
-    <%= paginate @audios %>
     <% if @audios.empty? %>
         Nao ha audios por enquanto
     <% else %>
         
-        <div class="columns is-multiline">
-            <% @audios.each do |audio|%>
+<div class="columns" style="padding: 30px; background-color: #555; height: 110vh">
+   <div class="column">
+      <div 
+          class="box is-dark" 
+          style="background-color: #333">
+          <div class="columns is-multiline">
+              <% @audios.each do |audio| %>
                 <%= render "layouts/components/audio", audio: audio %>
-            <% end %>
-        </div>
+              <% end %>
+              <%= paginate @audios %>
+          </div>
+      </div> 
+   </div> 
+</div>
     <% end %>
 
 </div>

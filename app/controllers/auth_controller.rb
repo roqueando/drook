@@ -1,4 +1,5 @@
 class AuthController < ApplicationController
+  before_action :block_access, only: [:index, :register]
 
   def index
     render "auth/login"
@@ -56,6 +57,11 @@ class AuthController < ApplicationController
     else
       redirect_to '/', alert: "Usuario e/ou senha incorreto(s)"
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to '/', notice: "Deslogado com sucesso"
   end
 
   private
