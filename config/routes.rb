@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   # AUTH Requests
   get '/', to: 'auth#index'
   get '/register', to: 'auth#register'
-  get '/user/profile/:id', to: 'auth#profile' 
   get '/logout', to: 'auth#destroy'
-
   post '/register', to: 'auth#store'
   post '/authenticate', to: 'auth#authenticate'
 
-  put '/user/profile/:id', to: 'auth#update_profile'
+  # User Requests
+  get '/user/profile/:id', to: 'user#profile' 
+  put '/user/profile/:id', to: 'user#update_profile'
 
   # Audio Requests
   get '/app', to: 'audios#index'

@@ -28,26 +28,6 @@ class AuthController < ApplicationController
     end
   end
 
-  def profile
-    @user = User.find(params[:id])
-    render "auth/profile", layout: "app"
-  end
-
-  def update_profile
-    @user = User.find(params[:id])
-    @user.name = params[:user][:name]
-    @user.email = params[:user][:email]
-    @user.password = params[:user][:password]
-    if @user.save
-      format.html do
-        redirect_to "/user/profile/#{@user.id}", notice: 'Perfil atualizado com sucesso'
-      end
-    else
-      format.html do
-        redirect_to "/user/profile/#{@user.id}", alert: 'Nao foi possivel atualizar seu perfil'
-      end
-    end
-  end
 
   def authenticate
     @user = User.find_by(email: params[:email].downcase)

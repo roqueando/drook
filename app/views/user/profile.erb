@@ -1,6 +1,19 @@
 <div class="profile" style="background-color: #333; height: 100vh; padding: 10px">
     <div class="box" style="margin: 50px auto; width: 30%">
         <h1 class="title is-4" style="text-align: center">Perfil</h1> 
+        <% if flash[:notice] %>
+            <% flash.each do |type, message| %>
+                <div class="notification is-success">
+                    <%= message %> 
+                </div>
+            <% end %>
+        <% elsif flash[:alert] %>
+            <% flash.each do |type, message| %>
+                <div class="notification is-danger">
+                    <%= message %> 
+                </div>
+            <% end %>
+        <% end %>
         <% if current_user.id == @user.id %>
             <%= form_with(url: "/user/profile/#{@user.id}", method: 'PUT') do%>
                 <label>Nome</label>
@@ -26,7 +39,7 @@
                     class="input"
                 />
                 <br></br>
-                <button class="button is-link is-fullwidth">salvar!</button>
+                <button class="button is-link is-fullwidth" type="submit">salvar!</button>
             <% end %>
             <% else %>
             <h1 class="title is-3"><%= @user.name%></h1>
