@@ -66,7 +66,14 @@ class AudiosController < ApplicationController
         }
       end
     end
+  end
 
+  def favorites
+    @favorites = Favorite.where(user_id: session[:user_id]).order(:created_at)
+    @favorites = Kaminari.paginate_array(@favorites)
+      .page(params[:page])
+      .per(6)
+    render "audios/favorites", layout: "app"
   end
 
   def stream

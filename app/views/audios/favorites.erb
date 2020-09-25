@@ -1,0 +1,14 @@
+<div class="columns" style="padding: 30px; background-color: #555; height: 110vh">
+   <div class="column">
+      <div 
+          class="box is-dark" 
+          style="background-color: #333">
+          <div class="columns is-multiline">
+              <% @favorites.each do |favorite| %>
+                <%= render "layouts/components/audio", audio: favorite.audio %>
+              <% end %>
+              <%= paginate @favorites %>
+          </div>
+      </div> 
+   </div> 
+</div>

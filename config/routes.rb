@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # Audio Requests
   get '/app', to: 'audios#index'
   get '/audio/stream/:id', to: 'audios#stream', as: :stream
+  get '/favorites', to: 'audios#favorites'
   post '/favorite/add/:audio_id', to: 'audios#add_favorite'
 
   resource :audios
